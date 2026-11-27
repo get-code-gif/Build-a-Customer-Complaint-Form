@@ -166,6 +166,20 @@ solutionDescription.addEventListener("change", () => {
     : "red";
 });
 
+document.querySelectorAll('input[type="radio"]').forEach((radio) => {
+  radio.addEventListener("change", () => {
+    const container = document.getElementById("solution-description-container");
+
+    container.style.display = otherCompileRadioButton.checked
+      ? "block"
+      : "none";
+  });
+});
+
+function isValid(validationResult) {
+  return Object.values(validationResult).every((value) => value === true);
+}
+
 // submitButton.addEventListener("click", (event) => {
 //   event.preventDefault();
 //   const formData = validateForm();
