@@ -180,14 +180,69 @@ function isValid(validationResult) {
   return Object.values(validationResult).every((value) => value === true);
 }
 
+// submitButton.addEventListener(
+//   "click",
+//   isValid(validateForm())
+//     ? () => {
+//         const validationResult = validateForm();
+//         console.log("Form data:", validationResult);
+
+//         // You can add further processing of the form data here
+//         alert("Form submitted successfully!");
+//       }
+//     : (event) => {
+//         event.preventDefault();
+//         const validationResult = validateForm();
+
+//         // Highlight invalid fields
+//         for (const [field, isValid] of Object.entries(validationResult)) {
+//           const element = document.getElementById(field);
+//           if (element) {
+//             element.style.borderColor = isValid ? "green" : "red";
+//           }
+//         }
+//         alert("Please correct the highlighted fields before submitting.");
+//       },
+// );
+
 // submitButton.addEventListener("click", (event) => {
 //   event.preventDefault();
-//   const formData = validateForm();
-//   if (formData) {
-//     console.log("Form data:", formData);
-//     fullName.style.borderColor = "green"; // Change border color to green on successful validation
+//   const validationResult = validateForm();
+
+//   if (isValid(validationResult)) {
+//     console.log("Form data:", validationResult);
+
 //     // You can add further processing of the form data here
+//     alert("Form submitted successfully!");
 //   } else {
-//     fullName.style.borderColor = "red"; // Change border color to red on validation failure
+//     // Highlight invalid fields
+//     for (const [field, isValid] of Object.entries(validationResult)) {
+//       const element = document.getElementById(field);
+//       if (element) {
+//         element.style.borderColor = isValid ? "green" : "red";
+//       }
+//     }
+//     alert("Please correct the highlighted fields before submitting.");
 //   }
 // });
+
+submitButton.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  const validationResult = validateForm();
+
+  for (const [field, valid] of Object.entries(validationResult)) {
+    const element = document.getElementById(field);
+
+    if (element) {
+      element.style.borderColor = valid ? "green" : "red";
+    }
+  }
+
+  if (isValid(validationResult)) {
+    console.log("Form data:", validationResult);
+    alert("Form submitted successfully!");
+  } else {
+    alert("Please correct the highlighted fields before submitting.");
+  }
+});
