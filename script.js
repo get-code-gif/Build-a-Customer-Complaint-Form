@@ -226,7 +226,9 @@ function isValid(validationResult) {
 //   }
 // });
 
-submitButton.addEventListener("submit", (event) => {
+const form = document.getElementById("form");
+
+form.addEventListener("submit", (event) => {
   event.preventDefault();
 
   const validationResult = validateForm();
